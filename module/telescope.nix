@@ -2,7 +2,8 @@
   programs.nixvim.plugins.telescope = {
     enable = true;
     keymaps = {
-      "<leader>ff" = "live_grep";
+      "<leader>ff" = "find_files";
+      "<leader>fg" = "live_grep";
     };
   };
 }

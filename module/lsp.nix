@@ -16,7 +16,10 @@ in
           #dockerls.enable = true;
           eslint.enable = true;
           html.enable = true;
-          java-language-server.enable = true;
+          java-language-server = {
+            enable = true;
+            #rootDir.__raw = "nvim_lsp.util.root_pattern('.git');";
+          };
           jsonls.enable = true;
           ltex.enable = true;
           #marksman.enable = true;

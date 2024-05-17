@@ -1,5 +1,3 @@
-{ pkgs, ... }:
-
 {
   imports = [
     ./cmp.nix
@@ -137,9 +135,9 @@
       { mode = "v"; key = "<A-j>"; action = ":m '>+1<CR>gv=gv"; }
       #-- move line down(v)
       { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
+      { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
     ];
 
-    extraPlugins = with pkgs.vimPlugins;  [ kanagawa-nvim ];
-    colorscheme = "kanagawa";
+    colorschemes.kanagawa.enable = true;
   };
 }
