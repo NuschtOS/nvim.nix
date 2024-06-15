@@ -24,7 +24,7 @@ in
           ltex.enable = true;
           #marksman.enable = true;
           #nixd.enable = true;
-          nil_ls.enable = true;
+          nil-ls.enable = true;
           rust-analyzer = {
             enable = true;
             installCargo = false;
