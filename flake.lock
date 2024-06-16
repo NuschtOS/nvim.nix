@@ -214,15 +214,15 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1718467694,
-        "narHash": "sha256-DrXCdWYIS0PARBh7cIhQWy5uUazfla9ziqOjVS090TY=",
-        "owner": "MarcelCoding",
+        "lastModified": 1718395224,
+        "narHash": "sha256-CHb6PztVli8qtAnXTR+VcB+6CANs+TkIz1Ivu8yXsvM=",
+        "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "5f53334fdc4dd7a893f6969a9ee24f038e6baa95",
+        "rev": "a4dec356e736f795f8eec2d6f1580b4769f2fe21",
         "type": "github"
       },
       "original": {
-        "owner": "MarcelCoding",
+        "owner": "nix-community",
         "ref": "nixos-24.05",
         "repo": "nixvim",
         "type": "github"
