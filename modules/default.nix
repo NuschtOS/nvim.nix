@@ -125,11 +125,11 @@
     }
     # move line up(n)
     { mode = "n"; key = "<A-j>"; action = ":m .+1<CR>=="; }
-    #move line down(n)
+    # move line down(n)
     { mode = "n"; key = "<A-k>"; action = ":m .-2<CR>=="; }
     # move line up(v)
     { mode = "v"; key = "<A-j>"; action = ":m '>+1<CR>gv=gv"; }
-    #-- move line down(v)
+    # move line down(v)
     { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
