@@ -2,11 +2,12 @@
   description = "A very basic NeoVim flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,41 +15,50 @@
     };
   };
 
-  outputs = { self, nixvim, ... }: let
+  outputs = { self, flake-utils, nixpkgs, nixvim, ... }: let
     angularLsp = { pkgs }: {
       name = "angularls";
       package = pkgs.callPackage ./pkgs/angular-language-server { };
     };
+
+    mkLsp = import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix";
+
+    mkModules = { config, lib, pkgs }: [
+      ./module/nixos.nix
+      {
+        programs.nixvim = mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; });
+      }
+      (lib.mergeModules [ "programs" "nixvim" ] { imports = [ ./module ]; })
+    ];
   in {
     homeManagerModules = {
-      nvim = { config, lib, pkgs, ... }: let
-        mkLsp = import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix" { inherit config lib pkgs; };
-      in {
+      nvim = { config, lib, pkgs, ... }: {
         imports = [
           nixvim.homeManagerModules.nixvim
-          {
-            programs.nixvim = mkLsp (angularLsp { inherit pkgs; });
-          }
-          ./module
-        ];
+        ] ++ mkModules { inherit config lib pkgs; };
       };
+
       default = self.homeManagerModules.nvim;
     };
 
     nixosModules = {
-      nvim = { config, lib, pkgs, ... }: let
-        mkLsp = import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix" { inherit config lib pkgs; };
-      in {
+      nvim = { config, lib, pkgs, ... }: {
         imports = [
           nixvim.nixosModules.nixvim
-          {
-            programs.nixvim = mkLsp (angularLsp { inherit pkgs; });
-          }
-          ./module
-        ];
+        ] ++ mkModules { inherit config lib pkgs; };
       };
 
       default = self.nixosModules.nvim;
     };
-  };
+  } // flake-utils.lib.eachDefaultSystem (system: {
+    packages.default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+      module = { config, lib, pkgs, ... }: {
+        imports = [
+          (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
+          ./module
+        ];
+      };
+      inherit (nixpkgs.legacyPackages.${system}) pkgs;
+    };
+  });
 }
