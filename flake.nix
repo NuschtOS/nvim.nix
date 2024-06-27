@@ -51,14 +51,18 @@
       default = self.nixosModules.nvim;
     };
   } // flake-utils.lib.eachDefaultSystem (system: {
-    packages.default = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-      module = { config, lib, pkgs, ... }: {
-        imports = [
-          (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
-          ./modules
-        ];
+    packages = {
+      nixvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+        module = { config, lib, pkgs, ... }: {
+          imports = [
+            (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
+            ./modules
+          ];
+        };
+        inherit (nixpkgs.legacyPackages.${system}) pkgs;
       };
-      inherit (nixpkgs.legacyPackages.${system}) pkgs;
+
+      default = self.packages.${system}.nixvim;
     };
   });
 }
