@@ -2,7 +2,6 @@
   imports = [
     ./cmp.nix
     ./lsp.nix
-    ./markdown.nix
     ./nvim-tree.nix
     ./treesitter.nix
     ./which_key.nix
