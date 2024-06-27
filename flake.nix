@@ -24,11 +24,11 @@
     mkLsp = import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix";
 
     mkModules = { config, lib, pkgs }: [
-      ./module/nixos.nix
+      ./modules/nixos.nix
       {
         programs.nixvim = mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; });
       }
-      (lib.mergeModules [ "programs" "nixvim" ] { imports = [ ./module ]; })
+      (lib.mergeModules [ "programs" "nixvim" ] { imports = [ ./modules ]; })
     ];
   in {
     homeManagerModules = {
@@ -55,7 +55,7 @@
       module = { config, lib, pkgs, ... }: {
         imports = [
           (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
-          ./module
+          ./modules
         ];
       };
       inherit (nixpkgs.legacyPackages.${system}) pkgs;
