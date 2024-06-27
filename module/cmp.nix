@@ -48,18 +48,18 @@
         "<CR>" = ''
             cmp.mapping(function(fallback)
           local luasnip = require'luasnip'
-                 if cmp.visible() then
-                     if luasnip.expandable() then
-                         luasnip.expand()
-                     else
-                         cmp.confirm({
-                             select = true,
-                         })
-                     end
-                 else
-                     fallback()
-                 end
-             end)
+                if cmp.visible() then
+                    if luasnip.expandable() then
+                        luasnip.expand()
+                    else
+                        cmp.confirm({
+                            select = true,
+                        })
+                    end
+                else
+                    fallback()
+                end
+            end)
         '';
         "<C-Space>" = "cmp.mapping.complete()";
 
