@@ -76,13 +76,18 @@
       };
     } // flake-utils.lib.eachDefaultSystem (system: {
       packages = {
-        nixvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+        nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
           module = { config, lib, pkgs, ... }: {
             imports = [
               (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
               ./modules
+              options
             ];
           };
+          inherit pkgs;
+        };
+
+        nixvim = self.packages.${system}.nixvimWithOptions {
           inherit (nixpkgs.legacyPackages.${system}) pkgs;
         };
 
