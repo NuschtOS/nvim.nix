@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  rust = pkgs.fenix.stable.completeToolchain or pkgs.rustc;
+  rust = pkgs.fenix.stable.completeToolchain or pkgs.rust-analyzer;
 in
 {
   plugins = {
