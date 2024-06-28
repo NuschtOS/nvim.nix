@@ -52,3 +52,14 @@ inputs = {
   environment.systemPackages = [ inputs.nvim.packages.x86_64-linux.nixvim ];
 }
 ```
+
+```nix
+{
+  environment.systemPackages = [
+    (inputs.nvim.packages.x86_64-linux.nixvimWithOptions {
+      inherit pkgs;
+      options.enableMan = false;
+    })
+  ];
+}
+```
