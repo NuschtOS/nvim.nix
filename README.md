@@ -30,6 +30,8 @@ inputs = {
 {
   imports = [ inputs.nvim.nixosModules.nvim ];
 
+  # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
+  # for availabe options.
   programs.nixvim.enable = true;
 }
 ```
@@ -41,6 +43,8 @@ inputs = {
 {
   imports = [ inputs.nvim.homeManagerModules.nvim ];
 
+  # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
+  # for availabe options.
   programs.nixvim.enable = true;
 }
 ```
@@ -58,6 +62,8 @@ inputs = {
   environment.systemPackages = [
     (inputs.nvim.packages.x86_64-linux.nixvimWithOptions {
       inherit pkgs;
+      # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
+      # for availabe options.
       options.enableMan = false;
     })
   ];
