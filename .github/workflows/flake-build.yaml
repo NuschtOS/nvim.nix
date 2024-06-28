@@ -1,0 +1,32 @@
+name: "flake check"
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ '*' ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [ "unstable", "stable" ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@V27
+
+      - name: patch stable
+        if: matrix.target == "stable"
+        run: |
+          sed -i flake.nix \
+            -e 's|url = "github:NixOS/nixpkgs/nixos-unstable"|follows = "nixpkgs-stable"|g' \
+            -e 's|url = "github:nix-community/home-manager"|follows = "home-manager-stable"|g' \
+            -e 's|url = "github:nix-community/nixvim""|follows = "nixvim-stable"|g'
+
+      - run: nix build -L
+
