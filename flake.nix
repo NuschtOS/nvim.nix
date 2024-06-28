@@ -25,10 +25,19 @@
 
     mkModules = { config, lib, pkgs }: [
       ./modules/nixos.nix
+      # partly copied from https://github.com/nix-community/nixvim/blob/main/wrappers/nixos.nix#L31-L49
       {
-        programs.nixvim = mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; });
+        options.programs.nixvim = lib.mkOption {
+          type = lib.types.submoduleWith {
+            shorthandOnlyDefinesConfig = true;
+            modules = [ {
+              imports = [ ./modules ];
+            } ];
+          };
+        };
+
+        config.programs.nixvim = mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; });
       }
-      (lib.mergeModules [ "programs" "nixvim" ] { imports = [ ./modules ]; })
     ];
   in {
     homeManagerModules = {
