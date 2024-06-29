@@ -34,9 +34,7 @@
   };
 
   plugins = {
-    # needs 24.05
-    # remove from extraPlugins
-    # autoclose.enable = true; # brackets, html, ...
+    autoclose.enable = true; # brackets, html, ...
     # does not work
     #commentary.enable = true;
     bufferline.enable = true;
