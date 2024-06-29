@@ -41,8 +41,6 @@
     #commentary.enable = true;
     bufferline.enable = true;
     lastplace.enable = true;
-    # icons in cmp
-    lspkind.enable = true;
     gitsigns.enable = true;
     nvim-colorizer.enable = true;
     indent-blankline.enable = true;
