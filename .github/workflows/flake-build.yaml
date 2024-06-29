@@ -20,13 +20,15 @@ jobs:
 
       - uses: cachix/install-nix-action@V27
 
-      - name: patch stable
+      - name: build stable
         if: matrix.target == 'stable'
         run: |
-          sed -i flake.nix \
-            -e 's|url = "github:NixOS/nixpkgs/nixos-unstable"|follows = "nixpkgs-stable"|g' \
-            -e 's|url = "github:nix-community/home-manager"|follows = "home-manager-stable"|g' \
-            -e 's|url = "github:nix-community/nixvim"|follows = "nixvim-stable"|g'
+          nix build -L \
+            --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.05 \
+            --override-input home-manager github:nix-community/home-manager/release-24.05 \
+            --override-input nixvim github:nix-community/nixvim/nixos-24.05
 
-      - run: nix build -L
-
+      - name: build unstable
+        if: matrix.target != 'stable'
+        run: |
+          nix build -L
