@@ -4,15 +4,36 @@ let
 in
 {
   plugins = {
+    lint = {
+      enable = true;
+      lintersByFt = {
+        css = [ "eslint_d" ];
+        scss = [ "eslint_d" ];
+        gitcommit = [ "commitlint" ];
+        javascript = [ "eslint_d" ];
+        javascriptreact = [ "eslint_d" ];
+        json = [ "jsonlint" ];
+        markdownlint = [ "markdownlint" ];
+        nix = [ "nix" ];
+        python = [ "ruff" ];
+        sh = [ "shellcheck" ];
+        typescript = [ "eslint_d" ];
+        typescriptreact = [ "eslint_d" ];
+        yaml = [ "yamllint" ];
+      };
+      # Trigger linting more aggressively, not only after writing a buffer
+      autoCmd.event = [ "BufWritePost" "BufEnter" "BufLeave" ];
+    };
+
     lsp = {
       enable = true;
       servers = {
         angularls.enable = true;
-        #ansiblels.enable = true;
+        ansiblels.enable = true;
         bashls.enable = true;
         cssls.enable = true;
-        #docker-compose-language-service.enable = true;
-        #dockerls.enable = true;
+        docker-compose-language-service.enable = true;
+        dockerls.enable = true;
         eslint.enable = true;
         html.enable = true;
         java-language-server = {
@@ -21,7 +42,7 @@ in
         };
         jsonls.enable = true;
         ltex.enable = true;
-        #marksman.enable = true;
+        marksman.enable = true;
         #nixd.enable = true;
         nil-ls.enable = true;
         rust-analyzer = {
@@ -30,13 +51,14 @@ in
           installRustc = false;
           package = rust;
         };
-        #sqls.enable = true;
+        sqls.enable = true;
         taplo.enable = true;
         texlab.enable = true;
         tsserver.enable = true;
-        #typos-lsp.enable = true;
+        typos-lsp.enable = true;
         yamlls.enable = true;
       };
+
       keymaps = {
         silent = true;
         diagnostic = {
@@ -83,13 +105,11 @@ in
             action = "type_definition";
             desc = "Goto Type Defition";
           };
-
           "gi" = {
             action = "implementation";
             desc = "Goto Implementation";
           };
           "<leader>k" = {
-
             action = "hover";
             desc = "Hover";
           };
@@ -102,26 +122,10 @@ in
     };
   };
 
-  extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "toggle-lsp-diagnostics";
-      src = pkgs.fetchFromGitHub {
-        owner = "WhoIsSethDaniel";
-        repo = "toggle-lsp-diagnostics.nvim";
-        rev = "afcacba44d86df4c3c9752b869e78eb838f55765";
-        hash = "sha256-7yWZjlfO3OclvS4VAd5J7MaOkRPDvBP1xQyGizRzJgk=";
-      };
-    })
-  ];
-
-  keymaps = [
-    {
-      mode = "n";
-      key = "<leader>tld";
-      action = "<Plug>(toggle-lsp-diag)";
-      options = {
-        desc = "Toggle LSP diagnostics";
-      };
-    }
-  ];
+  keymaps = [ {
+    mode = "n";
+    key = "<leader>tld";
+    action = "<Plug>(toggle-lsp-diag)";
+    options.desc = "Toggle LSP diagnostics";
+  } ];
 }

@@ -34,52 +34,19 @@
   };
 
   plugins = {
-    # needs 24.05
-    # remove from extraPlugins
-    # autoclose.enable = true; # brackets, html, ...
+    autoclose.enable = true; # brackets, html, ...
     # does not work
     #commentary.enable = true;
     bufferline.enable = true;
     lastplace.enable = true;
-    # icons in cmp
-    lspkind.enable = true;
     gitsigns.enable = true;
     nvim-colorizer.enable = true;
     indent-blankline.enable = true;
-    lint = {
-      enable = true;
-      lintersByFt = {
-        css = [ "eslint_d" ];
-        scss = [ "eslint_d" ];
-        gitcommit = [ "commitlint" ];
-        javascript = [ "eslint_d" ];
-        javascriptreact = [ "eslint_d" ];
-        json = [ "jsonlint" ];
-        markdownlint = [ "markdownlint" ];
-        nix = [ "nix" ];
-        python = [ "ruff" ];
-        sh = [ "shellcheck" ];
-        typescript = [ "eslint_d" ];
-        typescriptreact = [ "eslint_d" ];
-        yaml = [ "yamllint" ];
-      };
-      # Trigger linting more aggressively, not only after writing a buffer
-      autoCmd.event = [ "BufWritePost" "BufEnter" "BufLeave" ];
-    };
-    luasnip = {
-      enable = true;
-      extraConfig = {
-        region_check_events = "CursorHold,InsertLeave";
-        # those are for removing deleted snippets, also a common problem
-        delete_check_events = "TextChanged,InsertEnter";
-      };
-    };
     lualine = {
       enable = true;
       globalstatus = true;
       theme = "onedark";
     };
-    nvim-autopairs.enable = true;
     tmux-navigator.enable = true;
     crates-nvim.enable = true;
   };

@@ -1,7 +1,7 @@
 { buildNpmPackage, fetchurl }:
 
 buildNpmPackage rec {
-  name = "@angular/language-server";
+  name = "angular-language-server";
   version = "18.0.0";
 
   src = fetchurl {
