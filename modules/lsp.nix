@@ -8,11 +8,11 @@ in
       enable = true;
       servers = {
         angularls.enable = true;
-        #ansiblels.enable = true;
+        ansiblels.enable = true;
         bashls.enable = true;
         cssls.enable = true;
-        #docker-compose-language-service.enable = true;
-        #dockerls.enable = true;
+        docker-compose-language-service.enable = true;
+        dockerls.enable = true;
         eslint.enable = true;
         html.enable = true;
         java-language-server = {
@@ -21,7 +21,7 @@ in
         };
         jsonls.enable = true;
         ltex.enable = true;
-        #marksman.enable = true;
+        marksman.enable = true;
         #nixd.enable = true;
         nil-ls.enable = true;
         rust-analyzer = {
@@ -30,11 +30,11 @@ in
           installRustc = false;
           package = rust;
         };
-        #sqls.enable = true;
+        sqls.enable = true;
         taplo.enable = true;
         texlab.enable = true;
         tsserver.enable = true;
-        #typos-lsp.enable = true;
+        typos-lsp.enable = true;
         yamlls.enable = true;
       };
 
