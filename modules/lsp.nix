@@ -4,6 +4,27 @@ let
 in
 {
   plugins = {
+    lint = {
+      enable = true;
+      lintersByFt = {
+        css = [ "eslint_d" ];
+        scss = [ "eslint_d" ];
+        gitcommit = [ "commitlint" ];
+        javascript = [ "eslint_d" ];
+        javascriptreact = [ "eslint_d" ];
+        json = [ "jsonlint" ];
+        markdownlint = [ "markdownlint" ];
+        nix = [ "nix" ];
+        python = [ "ruff" ];
+        sh = [ "shellcheck" ];
+        typescript = [ "eslint_d" ];
+        typescriptreact = [ "eslint_d" ];
+        yaml = [ "yamllint" ];
+      };
+      # Trigger linting more aggressively, not only after writing a buffer
+      autoCmd.event = [ "BufWritePost" "BufEnter" "BufLeave" ];
+    };
+
     lsp = {
       enable = true;
       servers = {

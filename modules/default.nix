@@ -44,26 +44,6 @@
     gitsigns.enable = true;
     nvim-colorizer.enable = true;
     indent-blankline.enable = true;
-    lint = {
-      enable = true;
-      lintersByFt = {
-        css = [ "eslint_d" ];
-        scss = [ "eslint_d" ];
-        gitcommit = [ "commitlint" ];
-        javascript = [ "eslint_d" ];
-        javascriptreact = [ "eslint_d" ];
-        json = [ "jsonlint" ];
-        markdownlint = [ "markdownlint" ];
-        nix = [ "nix" ];
-        python = [ "ruff" ];
-        sh = [ "shellcheck" ];
-        typescript = [ "eslint_d" ];
-        typescriptreact = [ "eslint_d" ];
-        yaml = [ "yamllint" ];
-      };
-      # Trigger linting more aggressively, not only after writing a buffer
-      autoCmd.event = [ "BufWritePost" "BufEnter" "BufLeave" ];
-    };
     lualine = {
       enable = true;
       globalstatus = true;
