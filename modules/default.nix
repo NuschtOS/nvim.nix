@@ -64,14 +64,6 @@
       # Trigger linting more aggressively, not only after writing a buffer
       autoCmd.event = [ "BufWritePost" "BufEnter" "BufLeave" ];
     };
-    luasnip = {
-      enable = true;
-      extraConfig = {
-        region_check_events = "CursorHold,InsertLeave";
-        # those are for removing deleted snippets, also a common problem
-        delete_check_events = "TextChanged,InsertEnter";
-      };
-    };
     lualine = {
       enable = true;
       globalstatus = true;

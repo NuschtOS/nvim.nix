@@ -73,5 +73,14 @@
 
     # icons in cmp
     lspkind.enable = true;
+
+    luasnip = {
+      enable = true;
+      extraConfig = {
+        region_check_events = "CursorHold,InsertLeave";
+        # those are for removing deleted snippets, also a common problem
+        delete_check_events = "TextChanged,InsertEnter";
+      };
+    };
   };
 }
