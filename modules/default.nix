@@ -47,7 +47,6 @@
       globalstatus = true;
       theme = "onedark";
     };
-    nvim-autopairs.enable = true;
     tmux-navigator.enable = true;
     crates-nvim.enable = true;
   };
