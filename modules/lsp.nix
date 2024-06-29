@@ -37,6 +37,7 @@ in
         #typos-lsp.enable = true;
         yamlls.enable = true;
       };
+
       keymaps = {
         silent = true;
         diagnostic = {
@@ -83,13 +84,11 @@ in
             action = "type_definition";
             desc = "Goto Type Defition";
           };
-
           "gi" = {
             action = "implementation";
             desc = "Goto Implementation";
           };
           "<leader>k" = {
-
             action = "hover";
             desc = "Hover";
           };
@@ -102,26 +101,10 @@ in
     };
   };
 
-  extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "toggle-lsp-diagnostics";
-      src = pkgs.fetchFromGitHub {
-        owner = "WhoIsSethDaniel";
-        repo = "toggle-lsp-diagnostics.nvim";
-        rev = "afcacba44d86df4c3c9752b869e78eb838f55765";
-        hash = "sha256-7yWZjlfO3OclvS4VAd5J7MaOkRPDvBP1xQyGizRzJgk=";
-      };
-    })
-  ];
-
-  keymaps = [
-    {
-      mode = "n";
-      key = "<leader>tld";
-      action = "<Plug>(toggle-lsp-diag)";
-      options = {
-        desc = "Toggle LSP diagnostics";
-      };
-    }
-  ];
+  keymaps = [ {
+    mode = "n";
+    key = "<leader>tld";
+    action = "<Plug>(toggle-lsp-diag)";
+    options.desc = "Toggle LSP diagnostics";
+  } ];
 }
