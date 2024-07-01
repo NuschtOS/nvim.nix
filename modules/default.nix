@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   imports = [
     ./cmp.nix
@@ -7,7 +9,7 @@
     ./which_key.nix
     ./telescope.nix
   ];
-
+} // lib.mapAttrsRecursive (_: lib.mkDefault) {
   viAlias = true;
   vimAlias = true;
 
