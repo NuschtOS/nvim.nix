@@ -28,10 +28,6 @@
   };
 
   editorconfig.enable = true;
-  clipboard = {
-    register = "unnamedplus";
-    providers.wl-copy.enable = true;
-  };
 
   plugins = {
     autoclose.enable = true; # brackets, html, ...
