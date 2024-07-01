@@ -14,7 +14,7 @@ in
         javascriptreact = [ "eslint_d" ];
         json = [ "jsonlint" ];
         markdownlint = [ "markdownlint" ];
-        nix = [ "nix" ];
+        nix = [ "deadnix" "nix" "statix" ];
         python = [ "ruff" ];
         sh = [ "shellcheck" ];
         typescript = [ "eslint_d" ];
