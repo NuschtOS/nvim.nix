@@ -41,7 +41,8 @@ in
           #rootDir.__raw = "nvim_lsp.util.root_pattern('.git');";
         };
         jsonls.enable = true;
-        ltex.enable = true;
+        # does language correction event on keywords...
+        #ltex.enable = true;
         marksman.enable = true;
         #nixd.enable = true;
         nil-ls.enable = true;
