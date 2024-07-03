@@ -34,11 +34,31 @@ in
         cssls.enable = true;
         docker-compose-language-service.enable = true;
         dockerls.enable = true;
-        eslint.enable = true;
+        eslint = {
+          enable = true;
+          # https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/eslint.lua#L35-L48
+          # https://eslint.org/docs/v8.x/use/configure/configuration-files
+          rootDir.__raw = ''
+            require('lspconfig').util.root_pattern(
+              '.eslintrc',
+              '.eslintrc.js',
+              '.eslintrc.cjs',
+              '.eslintrc.yaml',
+              '.eslintrc.yml',
+              '.eslintrc.json',
+              'eslint.config.js',
+              'eslint.config.mjs',
+              'eslint.config.cjs',
+              'eslint.config.ts',
+              'eslint.config.mts',
+              'eslint.config.cts'
+             )
+          '';
+        };
         html.enable = true;
         java-language-server = {
           enable = true;
-          #rootDir.__raw = "nvim_lsp.util.root_pattern('.git');";
+          #rootDir.__raw = "nvim_lsp.util.root_pattern('.git')";
         };
         jsonls.enable = true;
         # does language correction even on keywords...
