@@ -32,7 +32,7 @@
   editorconfig.enable = true;
 
   plugins = {
-    autoclose.enable = true; # brackets, html, ...
+    nvim-autopairs.enable = true; # brackets, html, ...
     # does not work
     #commentary.enable = true;
     bufferline.enable = true;
