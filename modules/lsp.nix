@@ -57,6 +57,7 @@ in
         tsserver.enable = true;
         typos-lsp.enable = true;
         yamlls.enable = true;
+        lemminx.enable = true;
       };
 
       keymaps = {
