@@ -38,7 +38,7 @@ in
           enable = true;
           # https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/eslint.lua#L35-L48
           # https://eslint.org/docs/v8.x/use/configure/configuration-files
-          rootDir ''
+          rootDir = ''
             require('lspconfig').util.root_pattern(
               '.eslintrc',
               '.eslintrc.js',
