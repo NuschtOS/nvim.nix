@@ -56,7 +56,6 @@ in
         taplo.enable = true;
         texlab.enable = true;
         tsserver.enable = true;
-        typos-lsp.enable = true;
         yamlls.enable = true;
         lemminx.enable = true;
       };
