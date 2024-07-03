@@ -38,7 +38,7 @@ in
           enable = true;
           # https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/eslint.lua#L35-L48
           # https://eslint.org/docs/v8.x/use/configure/configuration-files
-          rootDir.__raw = ''
+          rootDir ''
             require('lspconfig').util.root_pattern(
               '.eslintrc',
               '.eslintrc.js',
@@ -58,7 +58,7 @@ in
         html.enable = true;
         java-language-server = {
           enable = true;
-          #rootDir.__raw = "nvim_lsp.util.root_pattern('.git')";
+          # rootDir = "nvim_lsp.util.root_pattern('.git')";
         };
         jsonls.enable = true;
         # does language correction even on keywords...
