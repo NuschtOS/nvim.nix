@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   rust = pkgs.fenix.stable.completeToolchain or pkgs.rust-analyzer;
 in
 {
+  extraPackages = map (pkg: pkgs.${pkg} or (with pkgs; {
+    golangcilint = golangci-lint;
+    jsonlint = nodePackages.jsonlint;
+  }).${pkg}) (lib.flatten (lib.attrValues config.plugins.lint.lintersByFt));
+
   plugins = {
     lint = {
       enable = true;
@@ -10,10 +15,11 @@ in
         css = [ "eslint_d" ];
         scss = [ "eslint_d" ];
         gitcommit = [ "commitlint" ];
+        go = [ "golangcilint" ];
         javascript = [ "eslint_d" ];
         javascriptreact = [ "eslint_d" ];
         json = [ "jsonlint" ];
-        markdownlint = [ "markdownlint" ];
+        markdownlint = [ "markdownlint-cli2" ];
         nix = [ "deadnix" "nix" "statix" ];
         python = [ "ruff" ];
         sh = [ "shellcheck" ];
