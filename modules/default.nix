@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -28,6 +28,10 @@
     exrc = true;
     secure = true;
   };
+
+  extraPlugins = with pkgs.vimPlugins; [
+    vim-fetch # accept ./path/to/file:123 as line numbers
+  ];
 
   editorconfig.enable = true;
 
