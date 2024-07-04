@@ -96,7 +96,10 @@ in
         texlab.enable = true;
         tsserver.enable = true;
         typos-lsp.enable = true;
-        yamlls.enable = true;
+        yamlls = {
+          enable = true;
+          settings.yaml.format.printWidth = 180;
+        };
         lemminx.enable = true;
       };
 
