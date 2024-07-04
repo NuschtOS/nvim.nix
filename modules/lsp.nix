@@ -61,6 +61,12 @@ in
              )
           '';
         };
+        gopls = {
+          enable = true;
+          settings.gopls = {
+            staticcheck = true;
+          };
+        };
         html.enable = true;
         java-language-server = {
           enable = true;
