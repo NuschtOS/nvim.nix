@@ -77,7 +77,13 @@ in
         #ltex.enable = true;
         marksman.enable = true;
         #nixd.enable = true;
-        nil-ls.enable = true;
+        nil-ls = {
+          enable = true;
+          settings = {
+            formatting.command = [ "nixpkgs-fmt" ];
+            nix.flake.autoArchive = true;
+          };
+        };
         rust-analyzer = {
           enable = true;
           installCargo = false;
