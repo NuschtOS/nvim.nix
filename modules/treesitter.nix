@@ -6,6 +6,7 @@
       "systemverilog"
       "verilog"
     ];
+    indent = true;
   };
 
   # Enable automatically closing and renaming HTML tags
