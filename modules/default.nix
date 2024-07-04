@@ -52,6 +52,7 @@
     nvim-autopairs.enable = true; # brackets, html, ...
     nvim-colorizer.enable = true;
     tmux-navigator.enable = true;
+    vim-matchup.enable = true; # extends % key with comments
   };
 
   userCommands = {
