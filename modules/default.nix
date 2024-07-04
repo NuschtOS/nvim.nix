@@ -37,8 +37,7 @@
 
   plugins = {
     nvim-autopairs.enable = true; # brackets, html, ...
-    # does not work
-    #commentary.enable = true;
+    commentary.enable = true;
     bufferline.enable = true;
     lastplace.enable = true;
     gitsigns.enable = true;
