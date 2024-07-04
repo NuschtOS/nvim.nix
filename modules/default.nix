@@ -33,23 +33,25 @@
     vim-fetch # accept ./path/to/file:123 as line numbers
   ];
 
+  colorschemes.kanagawa.enable = true;
+
   editorconfig.enable = true;
 
   plugins = {
-    nvim-autopairs.enable = true; # brackets, html, ...
-    commentary.enable = true;
     bufferline.enable = true;
-    lastplace.enable = true;
+    commentary.enable = true;
+    crates-nvim.enable = true;
     gitsigns.enable = true;
-    nvim-colorizer.enable = true;
     indent-blankline.enable = true;
+    lastplace.enable = true;
     lualine = {
       enable = true;
       globalstatus = true;
       theme = "onedark";
     };
+    nvim-autopairs.enable = true; # brackets, html, ...
+    nvim-colorizer.enable = true;
     tmux-navigator.enable = true;
-    crates-nvim.enable = true;
   };
 
   userCommands = {
@@ -101,6 +103,4 @@
     { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
-
-  colorschemes.kanagawa.enable = true;
 }
