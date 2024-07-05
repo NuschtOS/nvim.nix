@@ -61,6 +61,12 @@ in
              )
           '';
         };
+        gopls = {
+          enable = true;
+          settings.gopls = {
+            staticcheck = true;
+          };
+        };
         html.enable = true;
         java-language-server = {
           enable = true;
@@ -71,7 +77,14 @@ in
         #ltex.enable = true;
         marksman.enable = true;
         #nixd.enable = true;
-        nil-ls.enable = true;
+        nil-ls = {
+          enable = true;
+          settings = {
+            formatting.command = [ "nixpkgs-fmt" ];
+            nix.flake.autoArchive = true;
+          };
+        };
+        pylsp.enable = true;
         rust-analyzer = {
           enable = true;
           installCargo = false;
@@ -83,7 +96,10 @@ in
         texlab.enable = true;
         tsserver.enable = true;
         typos-lsp.enable = true;
-        yamlls.enable = true;
+        yamlls = {
+          enable = true;
+          settings.yaml.format.printWidth = 180;
+        };
         lemminx.enable = true;
       };
 
@@ -147,6 +163,12 @@ in
           };
         };
       };
+    };
+
+    schemastore = {
+      enable = true;
+      json.enable = true;
+      yaml.enable = true;
     };
   };
 
