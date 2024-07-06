@@ -11,6 +11,15 @@ in
   plugins = {
     lint = {
       enable = true;
+      linters.yamllint.args = [
+        "--config-file ${pkgs.writeText "yamllint-config.yaml" /* yaml */ ''
+          rules:
+            document-start:
+              present: false
+            line-length:
+              max: 180
+        ''}"
+      ];
       lintersByFt = {
         css = [ "eslint_d" ];
         scss = [ "eslint_d" ];
