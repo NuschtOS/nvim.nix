@@ -27,24 +27,6 @@
       settings = {
         completion.autocomplete = false;
 
-        snippet.expand = /* lua */ ''
-          function(args)
-            require('luasnip').lsp_expand(args.body)
-          end
-        '';
-
-        # Order influences ranking
-        sources = map (name: { inherit name; }) [
-          "crates"
-          "nvim_lsp"
-          "luasnip"
-          #"treesitter"
-          "path"
-          "buffer"
-          #"calc"
-          "cmdline"
-        ];
-
         # https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
         mapping = {
           "<CR>" = /* lua */ ''
@@ -92,6 +74,24 @@
             end, { "i", "s" })
           '';
         };
+
+        snippet.expand = /* lua */ ''
+          function(args)
+            require('luasnip').lsp_expand(args.body)
+          end
+        '';
+
+        # Order influences ranking
+        sources = map (name: { inherit name; }) [
+          "crates"
+          "nvim_lsp"
+          "luasnip"
+          #"treesitter"
+          "path"
+          "buffer"
+          #"calc"
+          "cmdline"
+        ];
       };
     };
 
