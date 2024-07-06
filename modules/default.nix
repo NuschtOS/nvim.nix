@@ -50,6 +50,8 @@
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
 
+  luaLoader.enable = true;
+
   opts = {
     number = true;
     relativenumber = true;
