@@ -10,10 +10,45 @@
     ./telescope.nix
   ];
 } // lib.mapAttrsRecursive (_: lib.mkDefault) {
-  viAlias = true;
-  vimAlias = true;
+  colorschemes.kanagawa.enable = true;
+
+  editorconfig.enable = true;
+
+  extraPlugins = with pkgs.vimPlugins; [
+    vim-fetch # accept ./path/to/file:123 as line numbers
+  ];
 
   globals.mapleader = " ";
+
+  keymaps = [
+    # Use tab as buffer switcher in normal mode
+    {
+      mode = "n";
+      key = "<Tab>";
+      action = ":bnext<CR>";
+    }
+    {
+      mode = "n";
+      key = "<S-Tab>";
+      action = ":bprevious<CR>";
+    }
+
+    # Delete search highlight with backspace
+    {
+      mode = "n";
+      key = "<BS>";
+      action = ":nohlsearch<CR>";
+    }
+    # move line up(n)
+    { mode = "n"; key = "<A-j>"; action = ":m .+1<CR>=="; }
+    # move line down(n)
+    { mode = "n"; key = "<A-k>"; action = ":m .-2<CR>=="; }
+    # move line up(v)
+    { mode = "v"; key = "<A-j>"; action = ":m '>+1<CR>gv=gv"; }
+    # move line down(v)
+    { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
+    { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
+  ];
 
   opts = {
     number = true;
@@ -28,14 +63,6 @@
     exrc = true;
     secure = true;
   };
-
-  extraPlugins = with pkgs.vimPlugins; [
-    vim-fetch # accept ./path/to/file:123 as line numbers
-  ];
-
-  colorschemes.kanagawa.enable = true;
-
-  editorconfig.enable = true;
 
   plugins = {
     bufferline.enable = true;
@@ -77,33 +104,6 @@
     };
   };
 
-  keymaps = [
-    # Use tab as buffer switcher in normal mode
-    {
-      mode = "n";
-      key = "<Tab>";
-      action = ":bnext<CR>";
-    }
-    {
-      mode = "n";
-      key = "<S-Tab>";
-      action = ":bprevious<CR>";
-    }
-
-    # Delete search highlight with backspace
-    {
-      mode = "n";
-      key = "<BS>";
-      action = ":nohlsearch<CR>";
-    }
-    # move line up(n)
-    { mode = "n"; key = "<A-j>"; action = ":m .+1<CR>=="; }
-    # move line down(n)
-    { mode = "n"; key = "<A-k>"; action = ":m .-2<CR>=="; }
-    # move line up(v)
-    { mode = "v"; key = "<A-j>"; action = ":m '>+1<CR>gv=gv"; }
-    # move line down(v)
-    { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
-    { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
-  ];
+  viAlias = true;
+  vimAlias = true;
 }
