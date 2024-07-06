@@ -76,6 +76,10 @@
     lualine = {
       enable = true;
       globalstatus = true;
+      # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
+      sections.lualine_c = [ {
+        extraConfig.path = 1;
+      } ];
       theme = "onedark";
     };
     nvim-autopairs.enable = true; # brackets, html, ...
