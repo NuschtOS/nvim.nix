@@ -78,9 +78,14 @@
       enable = true;
       globalstatus = true;
       # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
-      sections.lualine_c = [ {
-        extraConfig.path = 1;
-      } ];
+      sections = {
+        lualine_b = [ {
+          extraConfig.sources = [ "nvim_diagnostic" "nvim_lsp" ];
+        } ];
+        lualine_c = [ {
+          extraConfig.path = 1;
+        } ];
+      };
       theme = "onedark";
     };
     nvim-autopairs.enable = true; # brackets, html, ...
