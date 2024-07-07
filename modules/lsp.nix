@@ -83,6 +83,12 @@ in
         jsonls.enable = true;
         # does language correction even on keywords...
         #ltex.enable = true;
+        lua-ls = {
+          enable = true;
+          extraOptions.Lua = {
+            telemetry.enable = false;
+          };
+        };
         marksman.enable = true;
         #nixd.enable = true;
         nil-ls = {
