@@ -48,7 +48,6 @@
           '';
           "<C-Space>" = "cmp.mapping.complete()";
 
-          # TODO: page up/down buttons to scroll multiple times
           "<Tab>" = /* lua */ ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
@@ -68,6 +67,51 @@
                 cmp.select_prev_item()
               elseif luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
+
+          "<Up>" = /* lua */ ''
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              elseif luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
+          "<Down>" = /* lua */ ''
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
+          "<PageUp>" = /* lua */ ''
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item({ count = 5 })
+              elseif luasnip.locally_jumpable(-5) then
+                luasnip.jump(-5)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
+          "<PageDown>" = /* lua */ ''
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item({ count = 5 })
+              elseif luasnip.locally_jumpable(5) then
+                luasnip.jump(5)
               else
                 fallback()
               end
