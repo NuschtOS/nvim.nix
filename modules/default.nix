@@ -53,13 +53,14 @@
   luaLoader.enable = true;
 
   opts = {
-    number = true;
-    relativenumber = true;
-    signcolumn = "yes";
-    scrolloff = 8;
-    tabstop = 2;
-    shiftwidth = 2;
     expandtab = true;
+    number = true;
+    pumheight = 15;
+    relativenumber = true;
+    scrolloff = 8;
+    shiftwidth = 2;
+    signcolumn = "yes";
+    tabstop = 2;
 
     # Allow project-specific .vimrc files, but restrict commands to secure ones
     exrc = true;
