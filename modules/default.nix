@@ -57,6 +57,7 @@
     scrolloff = 8;
     shiftwidth = 2;
     signcolumn = "yes";
+    smartindent = true;
     tabstop = 2;
     # save undo file after quit
     undofile = true;
