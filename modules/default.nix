@@ -9,16 +9,10 @@
     ./which_key.nix
     ./telescope.nix
   ];
-} // lib.mapAttrsRecursive (_: lib.mkDefault) {
-  colorschemes.kanagawa.enable = true;
-
-  editorconfig.enable = true;
 
   extraPlugins = with pkgs.vimPlugins; [
     vim-fetch # accept ./path/to/file:123 as line numbers
   ];
-
-  globals.mapleader = " ";
 
   keymaps = [
     # Use tab as buffer switcher in normal mode
@@ -49,7 +43,10 @@
     { mode = "v"; key = "<A-k>"; action = ":m '<-2<CR>gv=gv"; }
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
-
+} // lib.mapAttrsRecursive (_: lib.mkDefault) {
+  colorschemes.kanagawa.enable = true;
+  editorconfig.enable = true;
+  globals.mapleader = " ";
   luaLoader.enable = true;
 
   opts = {
