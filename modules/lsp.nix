@@ -14,7 +14,6 @@ in
       lintersByFt = {
         css = [ "eslint_d" ];
         scss = [ "eslint_d" ];
-        gitcommit = [ "commitlint" ];
         go = [ "golangcilint" ];
         javascript = [ "eslint_d" ];
         javascriptreact = [ "eslint_d" ];
