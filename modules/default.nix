@@ -58,6 +58,10 @@
     shiftwidth = 2;
     signcolumn = "yes";
     tabstop = 2;
+    # save undo file after quit
+    undofile = true;
+    undolevels = 1000;
+    undoreload = 10000;
 
     # Allow project-specific .vimrc files, but restrict commands to secure ones
     exrc = true;
