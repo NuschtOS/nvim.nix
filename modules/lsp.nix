@@ -11,6 +11,15 @@ in
   plugins = {
     lint = {
       enable = true;
+      linters.yamllint.args = [
+        "--config-file ${pkgs.writeText "yamllint-config.yaml" /* yaml */ ''
+          rules:
+            document-start:
+              present: false
+            line-length:
+              max: 180
+        ''}"
+      ];
       lintersByFt = {
         css = [ "eslint_d" ];
         scss = [ "eslint_d" ];
@@ -74,6 +83,12 @@ in
         jsonls.enable = true;
         # does language correction even on keywords...
         #ltex.enable = true;
+        lua-ls = {
+          enable = true;
+          extraOptions.Lua = {
+            telemetry.enable = false;
+          };
+        };
         marksman.enable = true;
         #nixd.enable = true;
         nil-ls = {
