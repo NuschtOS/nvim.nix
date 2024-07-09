@@ -1,3 +1,8 @@
+{ config, ... }:
+
+let
+  cmpWinHeight = config.opts.pumheight;
+in
 {
   extraConfigLuaPre = /* lua */ ''
     local luasnip = require('luasnip')
@@ -98,9 +103,9 @@
           "<PageUp>" = /* lua */ ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
-                cmp.select_prev_item({ count = 5 })
-              elseif luasnip.locally_jumpable(-5) then
-                luasnip.jump(-5)
+                cmp.select_prev_item({ count = ${toString cmpWinHeight} })
+              elseif luasnip.locally_jumpable(${toString (cmpWinHeight * -1)}) then
+                luasnip.jump(${toString (cmpWinHeight * -1)})
               else
                 fallback()
               end
@@ -109,9 +114,9 @@
           "<PageDown>" = /* lua */ ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
-                cmp.select_next_item({ count = 5 })
-              elseif luasnip.locally_jumpable(5) then
-                luasnip.jump(5)
+                cmp.select_next_item({ count = ${toString cmpWinHeight} })
+              elseif luasnip.locally_jumpable(${toString cmpWinHeight}) then
+                luasnip.jump(${toString cmpWinHeight})
               else
                 fallback()
               end
