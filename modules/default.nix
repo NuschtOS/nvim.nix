@@ -73,6 +73,7 @@
     bufferline.enable = true;
     commentary.enable = true;
     crates-nvim.enable = true;
+    fidget.enable = true;
     gitsigns.enable = true;
     indent-blankline.enable = true;
     lastplace.enable = true;
