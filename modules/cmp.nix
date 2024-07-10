@@ -149,8 +149,10 @@ in
           "treesitter"
           "luasnip"
           "path"
-          "buffer"
           #"calc"
+        ] ++ [ {
+          name = "buffer"; keyword_length = 3;
+        } ];
       };
     };
 
