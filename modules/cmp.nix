@@ -14,16 +14,6 @@ in
     end
   '';
 
-  extraConfigLua = /* lua */ ''
-    vim.api.nvim_create_autocmd({ 'TextChangedI' }, {
-      callback = function()
-        if has_words_before() then
-          cmp.complete()
-        end
-      end,
-    })
-  '';
-
   plugins = {
     cmp = {
       enable = true;
@@ -54,8 +44,6 @@ in
       };
 
       settings = {
-        completion.autocomplete = false;
-
         # https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
         mapping = {
           "<CR>" = /* lua */ ''
