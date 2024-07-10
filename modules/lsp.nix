@@ -21,18 +21,12 @@ in
         ''}"
       ];
       lintersByFt = {
-        css = [ "eslint_d" ];
-        scss = [ "eslint_d" ];
         go = [ "golangcilint" ];
-        javascript = [ "eslint_d" ];
-        javascriptreact = [ "eslint_d" ];
         json = [ "jsonlint" ];
         markdownlint = [ "markdownlint-cli2" ];
         nix = [ "deadnix" "nix" "statix" ];
         python = [ "ruff" ];
         sh = [ "shellcheck" ];
-        typescript = [ "eslint_d" ];
-        typescriptreact = [ "eslint_d" ];
         yaml = [ "yamllint" ];
       };
       # Trigger linting more aggressively, not only after writing a buffer
@@ -48,27 +42,7 @@ in
         cssls.enable = true;
         docker-compose-language-service.enable = true;
         dockerls.enable = true;
-        eslint = {
-          enable = true;
-          # https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/eslint.lua#L35-L48
-          # https://eslint.org/docs/v8.x/use/configure/configuration-files
-          rootDir = ''
-            require('lspconfig').util.root_pattern(
-              '.eslintrc',
-              '.eslintrc.js',
-              '.eslintrc.cjs',
-              '.eslintrc.yaml',
-              '.eslintrc.yml',
-              '.eslintrc.json',
-              'eslint.config.js',
-              'eslint.config.mjs',
-              'eslint.config.cjs',
-              'eslint.config.ts',
-              'eslint.config.mts',
-              'eslint.config.cts'
-             )
-          '';
-        };
+        eslint.enable = true;
         gopls = {
           enable = true;
           settings.gopls = {

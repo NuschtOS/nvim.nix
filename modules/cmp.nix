@@ -1,3 +1,8 @@
+{ config, ... }:
+
+let
+  cmpWinHeight = config.opts.pumheight;
+in
 {
   extraConfigLuaPre = /* lua */ ''
     local luasnip = require('luasnip')
@@ -9,24 +14,36 @@
     end
   '';
 
-  extraConfigLua = /* lua */ ''
-    vim.api.nvim_create_autocmd({ 'TextChangedI' }, {
-      callback = function()
-        if has_words_before() then
-          cmp.complete()
-        end
-      end,
-    })
-  '';
-
   plugins = {
     cmp = {
       enable = true;
       autoEnableSources = true;
 
-      settings = {
-        completion.autocomplete = false;
+      # https://github.com/hrsh7th/cmp-cmdline?tab=readme-ov-file#setup
+      # https://github.com/nix-community/nixvim/blob/a5e9dbdef1530a76056db12387d489a68eea6f80/plugins/completion/cmp/options/default.nix#L53-L71
+      cmdline = {
+        "/" = {
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          sources = [ { name = "buffer"; } ];
+        };
+        ":" = {
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          sources = [
+            { name = "path"; }
+            {
+              name = "cmdline";
+              option = {
+                ignore_cmds = [
+                  "Man"
+                  "!"
+                ];
+              };
+            }
+          ];
+        };
+      };
 
+      settings = {
         # https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
         mapping = {
           "<CR>" = /* lua */ ''
@@ -98,9 +115,9 @@
           "<PageUp>" = /* lua */ ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
-                cmp.select_prev_item({ count = 5 })
-              elseif luasnip.locally_jumpable(-5) then
-                luasnip.jump(-5)
+                cmp.select_prev_item({ count = ${toString cmpWinHeight} })
+              elseif luasnip.locally_jumpable(${toString (cmpWinHeight * -1)}) then
+                luasnip.jump(${toString (cmpWinHeight * -1)})
               else
                 fallback()
               end
@@ -109,9 +126,9 @@
           "<PageDown>" = /* lua */ ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
-                cmp.select_next_item({ count = 5 })
-              elseif luasnip.locally_jumpable(5) then
-                luasnip.jump(5)
+                cmp.select_next_item({ count = ${toString cmpWinHeight} })
+              elseif luasnip.locally_jumpable(${toString cmpWinHeight}) then
+                luasnip.jump(${toString cmpWinHeight})
               else
                 fallback()
               end
@@ -129,13 +146,13 @@
         sources = map (name: { inherit name; }) [
           "crates"
           "nvim_lsp"
+          "treesitter"
           "luasnip"
-          #"treesitter"
           "path"
-          "buffer"
           #"calc"
-          "cmdline"
-        ];
+        ] ++ [ {
+          name = "buffer"; keyword_length = 3;
+        } ];
       };
     };
 
