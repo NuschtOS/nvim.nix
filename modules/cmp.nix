@@ -158,8 +158,8 @@ in
         sources = map (name: { inherit name; }) [
           "crates"
           "nvim_lsp"
+          "treesitter"
           "luasnip"
-          #"treesitter"
           "path"
           "buffer"
           #"calc"
