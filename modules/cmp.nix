@@ -29,6 +29,30 @@ in
       enable = true;
       autoEnableSources = true;
 
+      # https://github.com/hrsh7th/cmp-cmdline?tab=readme-ov-file#setup
+      # https://github.com/nix-community/nixvim/blob/a5e9dbdef1530a76056db12387d489a68eea6f80/plugins/completion/cmp/options/default.nix#L53-L71
+      cmdline = {
+        "/" = {
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          sources = [ { name = "buffer"; } ];
+        };
+        ":" = {
+          mapping.__raw = "cmp.mapping.preset.cmdline()";
+          sources = [
+            { name = "path"; }
+            {
+              name = "cmdline";
+              option = {
+                ignore_cmds = [
+                  "Man"
+                  "!"
+                ];
+              };
+            }
+          ];
+        };
+      };
+
       settings = {
         completion.autocomplete = false;
 
@@ -139,8 +163,6 @@ in
           "path"
           "buffer"
           #"calc"
-          "cmdline"
-        ];
       };
     };
 
