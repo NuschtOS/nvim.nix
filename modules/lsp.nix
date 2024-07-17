@@ -130,7 +130,7 @@ in
           };
           "gy" = {
             action = "type_definition";
-            desc = "Goto Type Defition";
+            desc = "Goto Type Definition";
           };
           "gi" = {
             action = "implementation";
