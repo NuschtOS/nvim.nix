@@ -1,11 +1,10 @@
+{ lib, options, ... }:
+
 {
   plugins.treesitter = {
     enable = true;
-    ignoreInstall = [
-      # remove rather big grammars
-      "systemverilog"
-      "verilog"
-    ];
+    grammarPackages = lib.filter (g: g.pname != "verilog-grammar" && g.pname != "systemverilog-grammar")
+      options.plugins.treesitter.grammarPackages.default;
   };
 
   # Enable automatically closing and renaming HTML tags
