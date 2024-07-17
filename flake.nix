@@ -40,7 +40,20 @@
             };
           };
 
-          config.programs.nixvim = mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; });
+          config.programs.nixvim = lib.mkMerge [
+            (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
+            {
+              # this unfortunately needs to be here as we cannot access the nixos options inside of nixvim
+              extraPackages = map (let
+                mapping = with pkgs; {
+                  golangcilint = golangci-lint;
+                  jsonlint = nodePackages.jsonlint;
+                  nix = config.nix.package;
+                };
+              in pkg: if lib.hasAttr pkg mapping then mapping.${pkg} else pkgs.${pkg})
+              (lib.flatten (lib.attrValues config.programs.nixvim.plugins.lint.lintersByFt));
+            }
+          ];
         }
       ];
     in
