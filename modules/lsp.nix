@@ -1,13 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   rust = pkgs.fenix.stable.completeToolchain or pkgs.rust-analyzer;
 in
 {
-  extraPackages = map (pkg: pkgs.${pkg} or (with pkgs; {
-    golangcilint = golangci-lint;
-    jsonlint = nodePackages.jsonlint;
-  }).${pkg}) (lib.flatten (lib.attrValues config.plugins.lint.lintersByFt));
-
   plugins = {
     lint = {
       enable = true;
@@ -135,7 +130,7 @@ in
           };
           "gy" = {
             action = "type_definition";
-            desc = "Goto Type Defition";
+            desc = "Goto Type Definition";
           };
           "gi" = {
             action = "implementation";
