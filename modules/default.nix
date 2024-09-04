@@ -6,7 +6,6 @@
     ./lsp.nix
     ./nvim-tree.nix
     ./treesitter.nix
-    ./which_key.nix
     ./telescope.nix
   ];
 
@@ -97,6 +96,7 @@
     tmux-navigator.enable = true;
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
+    which-key.enable = true;
   };
 
   userCommands = {
