@@ -80,12 +80,12 @@
       enable = true;
       globalstatus = true;
       # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
-      sections = {
+      settings.sections = {
         lualine_b = [ {
-          extraConfig.sources = [ "nvim_diagnostic" "nvim_lsp" ];
+          sources = [ "nvim_diagnostic" "nvim_lsp" ];
         } ];
         lualine_c = [ {
-          extraConfig.path = 1;
+          path = 1;
         } ];
       };
       theme = "onedark";

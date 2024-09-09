@@ -25,7 +25,13 @@
         package = pkgs.callPackage ./pkgs/angular-language-server { };
       };
 
-      mkLsp = import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix";
+      mkLsp = args: import "${nixvim.outPath}/plugins/lsp/language-servers/_mk-lsp.nix" (args // {
+        package = nixpkgs.lib.mkOption {
+          default = args.package;
+          type = with nixpkgs.lib.types; nullOr package;
+          description = "Which package to use for ${args.name}.";
+        };
+      });
 
       mkModules = { config, lib, pkgs }: [
         ./modules/nixos.nix
@@ -41,7 +47,7 @@
           };
 
           config.programs.nixvim = lib.mkMerge [
-            (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
+            (mkLsp (angularLsp { inherit pkgs; }))
             {
               # this unfortunately needs to be here as we cannot access the nixos options inside of nixvim
               extraPackages = map (let
@@ -82,7 +88,7 @@
         nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
           module = { config, lib, pkgs, ... }: {
             imports = [
-              (mkLsp { inherit config lib pkgs; } (angularLsp { inherit pkgs; }))
+              (mkLsp (angularLsp { inherit pkgs; }))
               ./modules
               options
             ];
