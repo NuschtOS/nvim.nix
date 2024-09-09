@@ -78,17 +78,21 @@
     lastplace.enable = true;
     lualine = {
       enable = true;
-      globalstatus = true;
-      # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
-      settings.sections = {
-        lualine_b = [ {
-          sources = [ "nvim_diagnostic" "nvim_lsp" ];
-        } ];
-        lualine_c = [ {
-          path = 1;
-        } ];
+      settings = {
+        options = {
+          globalstatus = true;
+          theme = "onedark";
+        };
+        # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
+        sections = {
+          lualine_b = [ {
+            sources = [ "nvim_diagnostic" "nvim_lsp" ];
+          } ];
+          lualine_c = [ {
+            path = 1;
+          } ];
+        };
       };
-      theme = "onedark";
     };
     nvim-autopairs.enable = true; # brackets, html, ...
     nvim-colorizer.enable = true;
