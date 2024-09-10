@@ -20,13 +20,14 @@ jobs:
 
       - uses: cachix/install-nix-action@V27
 
-      - name: build stable
-        if: matrix.target == 'stable'
-        run: |
-          nix build -L \
-            --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.05 \
-            --override-input home-manager github:nix-community/home-manager/release-24.05 \
-            --override-input nixvim github:nix-community/nixvim/nixos-24.05
+      # TODO: bring back with 24.11
+      # - name: build stable
+      #   if: matrix.target == 'stable'
+      #   run: |
+      #     nix build -L \
+      #       --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.05 \
+      #       --override-input home-manager github:nix-community/home-manager/release-24.05 \
+      #       --override-input nixvim github:nix-community/nixvim/nixos-24.05
 
       - name: build unstable
         if: matrix.target != 'stable'
