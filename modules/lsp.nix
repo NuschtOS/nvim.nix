@@ -77,7 +77,7 @@ in
         sqls.enable = true;
         taplo.enable = true;
         texlab.enable = true;
-        tsserver.enable = true;
+        ts-ls.enable = true;
         typos-lsp.enable = true;
         yamlls = {
           enable = true;
