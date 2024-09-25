@@ -100,6 +100,7 @@
     tmux-navigator.enable = true;
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
+    web-devicons.enable = true;
     which-key.enable = true;
   };
 
