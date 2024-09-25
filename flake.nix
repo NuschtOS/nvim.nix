@@ -48,7 +48,6 @@
         {
           options.programs.nixvim = lib.mkOption {
             type = lib.types.submoduleWith {
-              shorthandOnlyDefinesConfig = true;
               modules = [{
                 imports = [ ./modules ];
               }];
