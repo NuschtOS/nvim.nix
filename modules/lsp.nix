@@ -73,6 +73,10 @@ in
           installCargo = false;
           installRustc = false;
           package = rust;
+          settings = {
+            cargo.features = "all";
+            check.features = "all";
+          };
         };
         sqls.enable = true;
         taplo.enable = true;
@@ -155,10 +159,10 @@ in
     };
   };
 
-  keymaps = [ {
+  keymaps = [{
     mode = "n";
     key = "<leader>tld";
     action = "<Plug>(toggle-lsp-diag)";
     options.desc = "Toggle LSP diagnostics";
-  } ];
+  }];
 }
