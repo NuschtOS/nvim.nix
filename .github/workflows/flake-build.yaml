@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: cachix/install-nix-action@v29
+      - uses: cachix/install-nix-action@v30
 
       # TODO: bring back with 24.11
       # - name: build stable
