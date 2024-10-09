@@ -20,6 +20,8 @@ jobs:
 
       - uses: cachix/install-nix-action@v30
 
+      - uses: DeterminateSystems/magic-nix-cache-action@v8
+
       # TODO: bring back with 24.11
       # - name: build stable
       #   if: matrix.target == 'stable'
