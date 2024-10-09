@@ -35,7 +35,7 @@ in
         ansiblels.enable = true;
         bashls.enable = true;
         cssls.enable = true;
-        docker-compose-language-service.enable = true;
+        docker_compose_language_service.enable = true;
         dockerls.enable = true;
         eslint.enable = true;
         gopls = {
@@ -45,22 +45,19 @@ in
           };
         };
         html.enable = true;
-        java-language-server = {
+        java_language_server = {
           enable = true;
           # rootDir = "nvim_lsp.util.root_pattern('.git')";
         };
         jsonls.enable = true;
-        # does language correction even on keywords...
-        #ltex.enable = true;
-        lua-ls = {
+        lua_ls = {
           enable = true;
           extraOptions.Lua = {
             telemetry.enable = false;
           };
         };
         marksman.enable = true;
-        #nixd.enable = true;
-        nil-ls = {
+        nil_ls = {
           enable = true;
           settings = {
             formatting.command = [ "nixpkgs-fmt" ];
@@ -68,7 +65,7 @@ in
           };
         };
         pylsp.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
@@ -81,8 +78,8 @@ in
         sqls.enable = true;
         taplo.enable = true;
         texlab.enable = true;
-        ts-ls.enable = true;
-        typos-lsp.enable = true;
+        ts_ls.enable = true;
+        typos_lsp.enable = true;
         yamlls = {
           enable = true;
           settings.yaml.format.printWidth = 180;
