@@ -88,7 +88,7 @@
           extraConfig.path = 1;
         } ];
       };
-      theme = "onedark";
+      theme = "kanagawa";
     };
     nvim-autopairs.enable = true; # brackets, html, ...
     nvim-colorizer.enable = true;
