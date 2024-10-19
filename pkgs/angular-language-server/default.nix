@@ -1,18 +1,19 @@
 { buildNpmPackage, fetchurl }:
 
 buildNpmPackage rec {
-  name = "angular-language-server";
-  version = "18.0.0";
+  pname = "angular-language-server";
+  version = "18.2.0";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/@angular/language-server/-/language-server-${version}.tgz";
-    hash = "sha256-sIp9e4J83lrKM1dFPQOMBstTfM1fBOrGQspNMcINUkA=";
+    hash = "sha256-UvYOxs59jOO9Yf0tvX96P4R/36qPeEne+NQAFkg9Eis=";
   };
 
   postPatch = ''
     ln -s ${./package-lock.json} package-lock.json
   '';
 
-  npmDepsHash = "sha256-oLe8X6ykFoMOMMYODP6sEK2s1ihhM35sJf3jpOpfasY=";
+  npmFlags = [ "--legacy-peer-deps" ];
+  npmDepsHash = "sha256-stB85lVfZPWr9ycO4HSXyaHNx0PhicjSFI8KuXHCd5k=";
   dontNpmBuild = true;
 }
