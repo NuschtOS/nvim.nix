@@ -77,8 +77,12 @@
 
         default = self.nixosModules.nvim;
       };
-    } // flake-utils.lib.eachDefaultSystem (system: {
+    } // flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
       packages = {
+        angular-language-server = pkgs.callPackage ./pkgs/angular-language-server { };
+
         nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
           module = { config, lib, pkgs, ... }: {
             imports = [
@@ -93,7 +97,7 @@
         };
 
         nixvim = self.packages.${system}.nixvimWithOptions {
-          inherit (nixpkgs.legacyPackages.${system}) pkgs;
+          inherit pkgs;
         };
 
         default = self.packages.${system}.nixvim;
