@@ -84,7 +84,7 @@
         angular-language-server = pkgs.callPackage ./pkgs/angular-language-server { };
 
         nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          module = { config, lib, pkgs, ... }: {
+          module = { pkgs, ... }: {
             imports = [
               {
                 plugins.lsp.servers.angularls.package = pkgs.callPackage ./pkgs/angular-language-server { };
