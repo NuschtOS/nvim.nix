@@ -10,6 +10,8 @@
     gccPackage = null;
     nodejsPackage = null;
     treesitterPackage = null;
+
+    settings.highlight.enable = true;
   };
 
   # Enable automatically closing and renaming HTML tags
