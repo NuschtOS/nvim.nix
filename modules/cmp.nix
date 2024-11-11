@@ -142,7 +142,9 @@ in
         sources = map (name: { inherit name; }) [
           "crates"
           "nvim_lsp"
-          "treesitter"
+          # poor performance especially in large files like all-packages.nix from nixpkgs
+          # https://github.com/ray-x/cmp-treesitter/issues/9
+          # "treesitter"
           "luasnip"
           "path"
           #"calc"
