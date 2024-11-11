@@ -14,11 +14,12 @@
     "enabled": true
   },
   "osvVulnerabilityAlerts": true,
-  "postUpgradeTasks": {
-    "commands": ["./nix/update-pnpm-hash.sh"],
-    "executionMode": "branch",
-    "fileFilters": ["nix/frontend.nix"]
-  },
+  "packageRules": [
+    {
+      "matchManagers": ["nix"],
+      "groupName": "flake inputs"
+    }
+  ],
   "prHourlyLimit": 0,
   "schedule": [
     "before 12am on sunday"

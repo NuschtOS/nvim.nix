@@ -51,8 +51,6 @@
               };
             in pkg: if lib.hasAttr pkg mapping then mapping.${pkg} else pkgs.${pkg})
             (lib.flatten (lib.attrValues config.programs.nixvim.plugins.lint.lintersByFt));
-
-            plugins.lsp.servers.angularls.package = pkgs.callPackage ./pkgs/angular-language-server { };
           };
         }
       ];
@@ -81,18 +79,11 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       packages = {
-        angular-language-server = pkgs.callPackage ./pkgs/angular-language-server { };
-
         nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          module = { pkgs, ... }: {
-            imports = [
-              {
-                plugins.lsp.servers.angularls.package = pkgs.callPackage ./pkgs/angular-language-server { };
-              }
-              ./modules
-              options
-            ];
-          };
+          module.imports = [
+            ./modules
+            options
+          ];
           inherit pkgs;
         };
 
