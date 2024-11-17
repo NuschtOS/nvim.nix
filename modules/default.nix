@@ -97,7 +97,6 @@
     nvim-autopairs.enable = true; # brackets, html, ...
     nvim-colorizer.enable = true;
     rainbow-delimiters.enable = true;
-    tmux-navigator.enable = true;
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
     web-devicons.enable = true;
