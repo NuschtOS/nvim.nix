@@ -101,6 +101,7 @@
     vim-matchup.enable = true; # extends % key with comments
     web-devicons.enable = true;
     which-key.enable = true;
+    vim-suda.enable = true;
   };
 
   userCommands = {
