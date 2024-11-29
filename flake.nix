@@ -23,6 +23,7 @@
         git-hooks.follows = "";
         nix-darwin.follows = "";
         treefmt-nix.follows = "";
+        nuschtosSearch.follows = "";
       };
     };
   };
