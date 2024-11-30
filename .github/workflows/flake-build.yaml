@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "unstable", "stable" ]
+        target: [ "24.11", "unstable" ]
 
     steps:
       - uses: actions/checkout@v4
@@ -26,16 +26,16 @@ jobs:
 
       - uses: DeterminateSystems/magic-nix-cache-action@v8
 
-      # TODO: bring back with 24.11
-      # - name: build stable
-      #   if: matrix.target == 'stable'
-      #   run: |
-      #     nix build -L \
-      #       --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.05 \
-      #       --override-input home-manager github:nix-community/home-manager/release-24.05 \
-      #       --override-input nixvim github:nix-community/nixvim/nixos-24.05
+      - name: build stable
+        if: matrix.target != 'unstable'
+        run: |
+          # TODO: switch to nixvim/nixos-24.11 when available
+          nix build -L \
+            --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.11 \
+            --override-input home-manager github:nix-community/home-manager/release-24.11 \
+            --override-input nixvim github:nix-community/nixvim
 
       - name: build unstable
-        if: matrix.target != 'stable'
+        if: matrix.target == 'unstable'
         run: |
           nix build -L
