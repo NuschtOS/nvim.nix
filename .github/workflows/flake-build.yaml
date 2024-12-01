@@ -29,11 +29,10 @@ jobs:
       - name: build stable
         if: matrix.target != 'unstable'
         run: |
-          # TODO: switch to nixvim/nixos-24.11 when available
           nix build -L \
             --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.11 \
             --override-input home-manager github:nix-community/home-manager/release-24.11 \
-            --override-input nixvim github:nix-community/nixvim
+            --override-input nixvim github:nix-community/nixvim/nixos-24.11
 
       - name: build unstable
         if: matrix.target == 'unstable'
