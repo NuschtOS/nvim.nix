@@ -6,12 +6,12 @@
 # flake.nix
 inputs = {
   home-manager = {
-    url = "github:nix-community/home-manager/release-24.05";
+    url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+  nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nixvim = {
-    url = "github:nix-community/nixvim/nixos-24.05";
+    url = "github:nix-community/nixvim/nixos-unstable";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -31,12 +31,12 @@ inputs = {
   imports = [ inputs.nvim.nixosModules.nvim ];
 
   # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
-  # for availabe options.
+  # for available options.
   programs.nixvim.enable = true;
 }
 ```
 
-### HomeManager
+### Home-Manager
 
 ```nix
 # home.nix
@@ -44,7 +44,7 @@ inputs = {
   imports = [ inputs.nvim.homeManagerModules.nvim ];
 
   # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
-  # for availabe options.
+  # for available options.
   programs.nixvim.enable = true;
 }
 ```
@@ -63,7 +63,7 @@ inputs = {
     (inputs.nvim.packages.x86_64-linux.nixvimWithOptions {
       inherit pkgs;
       # See <https://nix-community.github.io/nixvim/NeovimOptions/index.html>
-      # for availabe options.
+      # for available options.
       options.enableMan = false;
     })
   ];

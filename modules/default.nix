@@ -1,5 +1,8 @@
 { lib, pkgs, ... }:
 
+let
+  colorizer = if lib.versionAtLeast lib.version "25.05pre" then "colorizer" else "nvim-colorizer";
+in
 {
   imports = [
     ./cmp.nix
@@ -95,7 +98,7 @@
       };
     };
     nvim-autopairs.enable = true; # brackets, html, ...
-    nvim-colorizer.enable = true;
+    ${colorizer}.enable = true;
     rainbow-delimiters.enable = true;
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
