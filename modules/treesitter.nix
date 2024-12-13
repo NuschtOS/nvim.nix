@@ -3,8 +3,12 @@
 {
   plugins.treesitter = {
     enable = true;
-    grammarPackages = lib.filter (g: g.pname != "verilog-grammar" && g.pname != "systemverilog-grammar")
-      options.plugins.treesitter.grammarPackages.default;
+    # exclude some big and rarely used languages
+    grammarPackages = lib.filter (
+      g: g.pname != "gnuplot-grammar"
+      && g.pname != "systemverilog-grammar"
+      && g.pname != "verilog-grammar"
+    ) options.plugins.treesitter.grammarPackages.default;
 
     # we are not installing packages by hand
     gccPackage = null;
