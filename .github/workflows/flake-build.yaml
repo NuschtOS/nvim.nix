@@ -24,7 +24,7 @@ jobs:
 
       - uses: cachix/install-nix-action@v30
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
+      - uses: DeterminateSystems/magic-nix-cache-action@v9
 
       - name: build stable
         if: matrix.target != 'unstable'
