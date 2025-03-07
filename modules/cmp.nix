@@ -145,7 +145,8 @@ in
           # poor performance especially in large files like all-packages.nix from nixpkgs
           # https://github.com/ray-x/cmp-treesitter/issues/9
           # "treesitter"
-          "luasnip"
+          # also pretty bad for performance
+          # "luasnip"
           "path"
           #"calc"
         ] ++ [ {
