@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, options, pkgs, ... }:
 
 let
   colorizer = if lib.versionAtLeast lib.version "25.05pre" then "colorizer" else "nvim-colorizer";
@@ -71,10 +71,12 @@ in
     secure = true;
   };
 
-  plugins = {
+  plugins = let
+    crates = if options?crates then "crates" else "crates-nvim";
+  in {
     bufferline.enable = true;
     commentary.enable = true;
-    crates-nvim.enable = true;
+    "${crates}".enable = true;
     fidget.enable = true;
     gitsigns.enable = true;
     indent-blankline.enable = true;
