@@ -18,11 +18,6 @@
         home-manager.follows = "home-manager";
 
         # https://github.com/nix-community/nixvim/blob/main/flake.nix#L12-L34
-        devshell.follows = "";
-        flake-compat.follows = "";
-        git-hooks.follows = "";
-        nix-darwin.follows = "";
-        treefmt-nix.follows = "";
         nuschtosSearch.follows = "";
       };
     };
