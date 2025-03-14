@@ -72,7 +72,7 @@ in
   };
 
   plugins = let
-    crates = if options?crates then "crates" else "crates-nvim";
+    crates = if options.plugins?crates then "crates" else "crates-nvim";
   in {
     bufferline.enable = true;
     commentary.enable = true;
