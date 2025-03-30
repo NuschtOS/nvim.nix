@@ -137,10 +137,6 @@ in
             action = "implementation";
             desc = "Goto Implementation";
           };
-          "<leader>k" = {
-            action = "hover";
-            desc = "Hover";
-          };
         };
       };
     };
