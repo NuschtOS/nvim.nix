@@ -3,9 +3,10 @@
 {
   plugins.treesitter = {
     enable = true;
-    # exclude some big and rarely used languages
+    # exclude some big (above 10 MB) and rarely used languages
     grammarPackages = lib.filter (
       g: g.pname != "gnuplot-grammar"
+      && g.pname != "razor-grammar"
       && g.pname != "systemverilog-grammar"
       && g.pname != "verilog-grammar"
     ) options.plugins.treesitter.grammarPackages.default;
