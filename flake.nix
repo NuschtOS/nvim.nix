@@ -6,16 +6,10 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
 
         # https://github.com/nix-community/nixvim/blob/main/flake.nix#L12-L34
         nuschtosSearch.follows = "";
