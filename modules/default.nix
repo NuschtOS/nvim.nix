@@ -1,8 +1,5 @@
 { lib, options, pkgs, ... }:
 
-let
-  colorizer = if lib.versionAtLeast lib.version "25.05pre" then "colorizer" else "nvim-colorizer";
-in
 {
   imports = [
     ./cmp.nix
@@ -71,47 +68,43 @@ in
     secure = true;
   };
 
-  diagnostics.virtual_text = true;
+  diagnostic.settings.virtual_text = true;
 
-  plugins =
-    let
-      crates = if options.plugins?crates then "crates" else "crates-nvim";
-    in
-    {
-      bufferline.enable = true;
-      commentary.enable = true;
-      "${crates}".enable = true;
-      fidget.enable = true;
-      gitsigns.enable = true;
-      indent-blankline.enable = true;
-      lastplace.enable = true;
-      lualine = {
-        enable = true;
-        settings = {
-          options = {
-            globalstatus = true;
-            theme = "onedark";
-          };
-          # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
-          sections = {
-            lualine_b = [{
-              sources = [ "nvim_diagnostic" "nvim_lsp" ];
-            }];
-            lualine_c = [{
-              path = 1;
-            }];
-          };
+  plugins = {
+    bufferline.enable = true;
+    commentary.enable = true;
+    crates.enable = true;
+    fidget.enable = true;
+    gitsigns.enable = true;
+    indent-blankline.enable = true;
+    lastplace.enable = true;
+    lualine = {
+      enable = true;
+      settings = {
+        options = {
+          globalstatus = true;
+          theme = "onedark";
+        };
+        # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
+        sections = {
+          lualine_b = [{
+            sources = [ "nvim_diagnostic" "nvim_lsp" ];
+          }];
+          lualine_c = [{
+            path = 1;
+          }];
         };
       };
-      nvim-autopairs.enable = true; # brackets, html, ...
-      ${colorizer}.enable = true;
-      rainbow-delimiters.enable = true;
-      ts-context-commentstring.enable = true; # set comment string dynamically
-      vim-matchup.enable = true; # extends % key with comments
-      web-devicons.enable = true;
-      which-key.enable = true;
-      vim-suda.enable = true;
     };
+    nvim-autopairs.enable = true; # brackets, html, ...
+    colorizer.enable = true;
+    rainbow-delimiters.enable = true;
+    ts-context-commentstring.enable = true; # set comment string dynamically
+    vim-matchup.enable = true; # extends % key with comments
+    web-devicons.enable = true;
+    which-key.enable = true;
+    vim-suda.enable = true;
+  };
 
   userCommands = {
     # Command aliases for common typos

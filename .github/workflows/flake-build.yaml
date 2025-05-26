@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "24.11", "unstable" ]
+        target: [ "25.05", "unstable" ]
 
     steps:
       - uses: actions/checkout@v4
@@ -30,9 +30,8 @@ jobs:
         if: matrix.target != 'unstable'
         run: |
           nix build -L \
-            --override-input nixpkgs github:NixOS/nixpkgs/nixos-24.11 \
-            --override-input home-manager github:nix-community/home-manager/release-24.11 \
-            --override-input nixvim github:nix-community/nixvim/nixos-24.11
+            --override-input nixpkgs github:NixOS/nixpkgs/nixos-25.05 \
+            --override-input nixvim github:nix-community/nixvim/nixos-25.05
 
       - name: build unstable
         if: matrix.target == 'unstable'
