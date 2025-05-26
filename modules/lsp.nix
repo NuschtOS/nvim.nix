@@ -137,14 +137,6 @@ in
             action = "implementation";
             desc = "Goto Implementation";
           };
-          "<leader>k" = {
-            action = "hover";
-            desc = "Hover";
-          };
-          "<leader>ls" = {
-            action = "signature_help";
-            desc = "Signature Help";
-          };
         };
       };
     };

@@ -1,8 +1,5 @@
 { lib, options, pkgs, ... }:
 
-let
-  colorizer = if lib.versionAtLeast lib.version "25.05pre" then "colorizer" else "nvim-colorizer";
-in
 {
   imports = [
     ./cmp.nix
@@ -71,12 +68,12 @@ in
     secure = true;
   };
 
-  plugins = let
-    crates = if options.plugins?crates then "crates" else "crates-nvim";
-  in {
+  diagnostic.settings.virtual_text = true;
+
+  plugins = {
     bufferline.enable = true;
     commentary.enable = true;
-    "${crates}".enable = true;
+    crates.enable = true;
     fidget.enable = true;
     gitsigns.enable = true;
     indent-blankline.enable = true;
@@ -90,17 +87,17 @@ in
         };
         # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
         sections = {
-          lualine_b = [ {
+          lualine_b = [{
             sources = [ "nvim_diagnostic" "nvim_lsp" ];
-          } ];
-          lualine_c = [ {
+          }];
+          lualine_c = [{
             path = 1;
-          } ];
+          }];
         };
       };
     };
     nvim-autopairs.enable = true; # brackets, html, ...
-    ${colorizer}.enable = true;
+    colorizer.enable = true;
     rainbow-delimiters.enable = true;
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
