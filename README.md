@@ -5,10 +5,6 @@
 ```nix
 # flake.nix
 inputs = {
-  home-manager = {
-    url = "github:nix-community/home-manager";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nixvim = {
     url = "github:nix-community/nixvim/nixos-unstable";
@@ -17,7 +13,6 @@ inputs = {
 
   nvim = {
     url = "github:NuschtOS/nvim.nix";
-    inputs.home-manager.follows = "home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 };
