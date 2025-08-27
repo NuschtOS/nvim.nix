@@ -1,7 +1,5 @@
 { pkgs, ... }:
-let
-  rust = pkgs.fenix.stable.completeToolchain or pkgs.rust-analyzer;
-in
+
 {
   plugins = {
     lint = {
@@ -69,7 +67,6 @@ in
           enable = true;
           installCargo = false;
           installRustc = false;
-          package = rust;
           settings = {
             cargo.features = "all";
             check.features = "all";
