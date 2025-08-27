@@ -67,6 +67,7 @@
           enable = true;
           installCargo = false;
           installRustc = false;
+          package = null;
           settings = {
             cargo.features = "all";
             check.features = "all";
