@@ -70,6 +70,13 @@
 
   diagnostic.settings.virtual_text = true;
 
+  performance.byteCompileLua = {
+    enable = true;
+    luaLib = true;
+    nvimRuntime = true;
+    plugins = true;
+  };
+
   plugins = {
     bufferline.enable = true;
     commentary.enable = true;
