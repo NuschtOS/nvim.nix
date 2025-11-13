@@ -38,10 +38,10 @@
             extraPackages = map (let
               mapping = with pkgs; {
                 golangcilint = golangci-lint;
-                jsonlint = nodePackages.jsonlint;
+                jsonlint = nodePackages.jsonlint or python3Packages.demjson3;
                 nix = config.nix.package;
               };
-            in pkg: if lib.hasAttr pkg mapping then mapping.${pkg} else pkgs.${pkg})
+            in pkg: mapping.${pkg} or pkgs.${pkg})
             (lib.flatten (lib.attrValues config.programs.nixvim.plugins.lint.lintersByFt));
           };
         }
