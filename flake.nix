@@ -38,7 +38,6 @@
             extraPackages = map (let
               mapping = with pkgs; {
                 golangcilint = golangci-lint;
-                jsonlint = nodePackages.jsonlint or python3Packages.demjson3;
                 nix = config.nix.package;
               };
             in pkg: mapping.${pkg} or pkgs.${pkg})
