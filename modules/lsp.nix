@@ -15,7 +15,6 @@
       ];
       lintersByFt = {
         go = [ "golangcilint" ];
-        json = [ "jsonlint" ];
         markdownlint = [ "markdownlint-cli2" ];
         nix = [ "deadnix" "nix" "statix" ];
         python = [ "ruff" ];
