@@ -83,6 +83,17 @@
     crates.enable = true;
     fidget.enable = true;
     gitsigns.enable = true;
+    image = {
+      enable = true;
+      settings = {
+        backend = "sixel"; # Me and Marcel use Wezterm
+        integrations = {
+          css.enabled = true;
+          markdown.only_render_image_at_cursor = true;
+          html.enabled = true;
+        };
+      };
+    };
     indent-blankline.enable = true;
     lastplace.enable = true;
     lualine = {
