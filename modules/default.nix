@@ -135,4 +135,6 @@
 
   viAlias = true;
   vimAlias = true;
+
+  withRuby = false; # not used by any plugin
 }
