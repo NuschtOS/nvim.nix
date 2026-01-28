@@ -1,4 +1,4 @@
-{ lib, options, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -43,11 +43,6 @@
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
 } // lib.mapAttrsRecursive (_: lib.mkDefault) {
-  colorschemes.kanagawa.enable = true;
-  editorconfig.enable = true;
-  globals.mapleader = " ";
-  luaLoader.enable = true;
-
   opts = {
     expandtab = true;
     number = true;
@@ -68,7 +63,11 @@
     secure = true;
   };
 
+  colorschemes.kanagawa.enable = true;
   diagnostic.settings.virtual_text = true;
+  editorconfig.enable = true;
+  globals.mapleader = " ";
+  luaLoader.enable = true;
 
   performance.byteCompileLua = {
     enable = true;
