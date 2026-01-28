@@ -36,6 +36,7 @@
         eslint.enable = true;
         gopls = {
           enable = true;
+          package = pkgs.go_latest;
           settings.gopls = {
             staticcheck = true;
           };
