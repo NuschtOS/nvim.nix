@@ -11,11 +11,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # https://github.com/nix-community/nixvim/blob/main/flake.nix#L12-L34
-        nuschtosSearch.follows = "";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
