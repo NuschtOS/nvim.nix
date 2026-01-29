@@ -1,4 +1,4 @@
-{ lib, options, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -43,11 +43,6 @@
     { mode = "n"; key = "<leader>gb"; action = ":Gitsign blame_line<CR>"; }
   ];
 } // lib.mapAttrsRecursive (_: lib.mkDefault) {
-  colorschemes.kanagawa.enable = true;
-  editorconfig.enable = true;
-  globals.mapleader = " ";
-  luaLoader.enable = true;
-
   opts = {
     expandtab = true;
     number = true;
@@ -68,7 +63,46 @@
     secure = true;
   };
 
+  colorschemes.kanagawa.enable = true;
   diagnostic.settings.virtual_text = true;
+  editorconfig.enable = true;
+
+  extraFiles = {
+    "ftdetect/bash.vim".text = /* vim */ ''
+      au BufRead,BufNewFile .envrc set filetype=bash
+    '';
+    "ftdetect/bindzone.vim".text = /* vim */ ''
+      au BufRead,BufNewFile *.zone set filetype=bindzone
+    '';
+    "ftdetect/conf.vim".text = /* vim */ ''
+      " only overwrite the filetype if it is plain conf
+      if (&filetype ==# 'conf')
+        au BufNewFile,BufRead *.conf set filetype=dosini
+      endif
+      au BufNewFile,BufRead {,*/.config}/nix/nix.conf set filetype=conf
+    '';
+    "ftdetect/jsonc.vim".text = /* vim */ ''
+      " Based on https://github.com/kevinoid/vim-jsonc/blob/master/ftdetect/jsonc.vim
+      " Licensed under MIT
+
+      au BufNewFile,BufRead *.cjsn setfiletype jsonc
+      au BufNewFile,BufRead *.cjson setfiletype jsonc
+      au BufNewFile,BufRead *.jsonc setfiletype jsonc
+      au BufRead,BufNewFile *.jsonl set filetype=jsonc
+
+      au BufNewFile,BufRead .eslintrc.json setlocal filetype=jsonc
+      au BufNewFile,BufRead .jshintrc setlocal filetype=jsonc
+      au BufNewFile,BufRead .mocharc.json setlocal filetype=jsonc
+      au BufNewFile,BufRead .mocharc.jsonc setlocal filetype=jsonc
+      au BufNewFile,BufRead coc-settings.json setlocal filetype=jsonc
+      au BufNewFile,BufRead coffeelint.json setlocal filetype=jsonc
+      au BufNewFile,BufRead tsconfig.json setlocal filetype=jsonc
+      au BufNewFile,BufRead */waybar/config setlocal filetype=jsonc
+    '';
+  };
+
+  globals.mapleader = " ";
+  luaLoader.enable = true;
 
   performance.byteCompileLua = {
     enable = true;
