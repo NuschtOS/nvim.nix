@@ -136,5 +136,7 @@
   viAlias = true;
   vimAlias = true;
 
-  withRuby = false; # not used by any plugin
+  # not used by any plugin
+  withPython3 = false;
+  withRuby = false;
 }
