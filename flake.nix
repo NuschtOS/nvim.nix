@@ -18,7 +18,6 @@
   outputs = { self, flake-utils, nixpkgs, nixvim, ... }:
     let
       mkModules = { config, lib, pkgs }: [
-        ./modules/nixos.nix
         # partly copied from https://github.com/nix-community/nixvim/blob/main/wrappers/nixos.nix#L31-L49
         {
           options.programs.nixvim = lib.mkOption {
@@ -47,6 +46,7 @@
         nvim = { config, lib, pkgs, ... }: {
           imports = [
             nixvim.homeManagerModules.nixvim
+            ./modules/home-manager.nix
           ] ++ mkModules { inherit config lib pkgs; };
         };
 
@@ -57,6 +57,7 @@
         nvim = { config, lib, pkgs, ... }: {
           imports = [
             nixvim.nixosModules.nixvim
+            ./modules/nixos.nix
           ] ++ mkModules { inherit config lib pkgs; };
         };
 
