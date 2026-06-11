@@ -42,6 +42,17 @@
       ];
     in
     {
+      darwinModules = {
+        nvim = { config, lib, pkgs, ... }: {
+          imports = [
+            nixvim.nixDarwinModules.nixvim
+            ./modules/darwin.nix
+          ] ++ mkModules { inherit config lib pkgs; };
+        };
+
+        default = self.darwinModules.nvim;
+      };
+
       homeManagerModules = {
         nvim = { config, lib, pkgs, ... }: {
           imports = [
