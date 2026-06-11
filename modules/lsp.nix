@@ -4,6 +4,7 @@
   plugins = {
     lint = {
       enable = true;
+      autoInstall.enable = true;
       linters.yamllint.args = [
         "--config-file ${pkgs.writeText "yamllint-config.yaml" /* yaml */ ''
           rules:
