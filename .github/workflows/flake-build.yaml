@@ -12,12 +12,13 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
+        os: [ "ubuntu", "macos" ]
         target: [ "26.05", "unstable" ]
+
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
       - uses: actions/checkout@v6
