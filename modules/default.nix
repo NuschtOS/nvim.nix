@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -8,6 +8,11 @@
     ./treesitter.nix
     ./telescope.nix
   ];
+
+  #assertions = [{
+  #  assertion = !config.programs.nixvim.colorschemes.kanagawa.enable && config.programs.nixvim.plugins.lualine.settings.options.theme == "kanagawa";
+  #  message = "NixVim `colorschemes.kanagawa.enable` is disabled but `plugins.lualine.settings.options.theme` is set to `kanagawa`.";
+  #}];
 
   extraPlugins = with pkgs.vimPlugins; [
     vim-fetch # accept ./path/to/file:123 as line numbers
@@ -135,7 +140,7 @@
       settings = {
         options = {
           globalstatus = true;
-          theme = "onedark";
+          theme = lib.mkDefault "kanagawa";
         };
         # https://github.com/nvim-lualine/lualine.nvim?tab=readme-ov-file#filename-component-options
         sections = {
