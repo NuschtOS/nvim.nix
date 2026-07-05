@@ -76,7 +76,25 @@
       };
     } // flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+      inherit (nixpkgs) lib;
+
+      checks = {
+        inherit (self.packages.${system}) default;
+
+        nixos = (lib.nixosSystem {
+          modules = [
+            self.nixosModules.default
+            # include a very basic config which contains fileSystem, etc. to avoid many assertions
+            ({ modulesPath, ... }: {
+              imports = lib.singleton "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix";
+            })
+          ];
+          inherit system;
+        }).config.system.build.toplevel;
+      };
     in {
+      inherit checks;
+
       packages = {
         nixvimWithOptions = { pkgs, options ? { } } : nixvim.legacyPackages.${system}.makeNixvimWithModule {
           module.imports = [
@@ -91,6 +109,9 @@
         };
 
         default = self.packages.${system}.nixvim;
+
+        # for easier `nix build` to avoid `nix flake check` failing because of nixvimWithOptions is not being a package
+        inherit checks;
       };
     });
 }
