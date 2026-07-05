@@ -34,11 +34,23 @@ jobs:
       - name: build stable
         if: matrix.target != 'unstable'
         run: |
-          nix build -L \
-            --override-input nixpkgs github:NixOS/nixpkgs/nixos-26.05 \
-            --override-input nixvim github:nix-community/nixvim/nixos-26.05
+          for i in default nixos; do
+            if [[ ${{ runner.os }} == macOS && $i == nixos ]]; then
+              continue
+            fi
+
+            nix build -L .#checks.$i \
+              --override-input nixpkgs github:NixOS/nixpkgs/nixos-26.05 \
+              --override-input nixvim github:nix-community/nixvim/nixos-26.05
+          done
 
       - name: build unstable
         if: matrix.target == 'unstable'
         run: |
-          nix build -L
+          for i in default nixos; do
+            if [[ ${{ runner.os }} == macOS && $i == nixos ]]; then
+              continue
+            fi
+
+            nix build -L .#checks.$i
+          done
