@@ -149,7 +149,15 @@
     };
     nvim-autopairs.enable = true; # brackets, html, ...
     colorizer.enable = true;
-    rainbow-delimiters.enable = true;
+    rainbow-delimiters = {
+      enable = true;
+      # Colouring delimiters across large syntax trees blocks the editor
+      settings.condition.__raw = ''
+        function(bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) <= 10000
+        end
+      '';
+    };
     ts-context-commentstring.enable = true; # set comment string dynamically
     vim-matchup.enable = true; # extends % key with comments
     web-devicons.enable = true;
